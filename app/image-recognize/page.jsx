@@ -115,7 +115,7 @@ function ImageRecognize() {
             ref={webcamRef}
             screenshotFormat="image/png" // You can change the format
             videoConstraints={videoConstraints}
-            mirrored={true}
+            
             
             />
             <button onClick={capture}>Capture Image</button>
