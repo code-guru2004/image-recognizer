@@ -153,7 +153,7 @@ export default function Home() {
                 </li>
                 <li>
                   <Link
-                    href="#how-it-works"
+                    href="/capture"
                     className="text-gray-600 hover:text-blue-600 transition duration-150 ease-in-out"
                   >
                     Capture Image
@@ -161,7 +161,7 @@ export default function Home() {
                 </li>
                 <li>
                   <Link
-                    href="#features"
+                    href="/image-recognize"
                     className="text-gray-600 hover:text-blue-600 transition duration-150 ease-in-out"
                   >
                     Recognizer
