@@ -11,6 +11,7 @@ function ImageRecognize() {
     const [image, setImage] = useState(null);
     const [result, setResult] = useState(null);
     const [loading, setLoading] = useState(false);
+
     const [videoConstraints, setVideoConstraints] = useState({ facingMode: "user" }); // Start with front camera
     const [backCameraAvailable, setBackCameraAvailable] = useState(false);
   
@@ -30,11 +31,11 @@ function ImageRecognize() {
   
     const capture = useCallback(() => {
       const imageSrc = webcamRef.current?.getScreenshot(); // Check if webcamRef.current exists
-      setImage(imageSrc);
+      setCapturedImage(imageSrc);
     }, [webcamRef]);
   
     const retake = () => {
-        setImage(null);
+      setCapturedImage(null);
     };
   
     const enableBackCamera = () => {
@@ -42,9 +43,8 @@ function ImageRecognize() {
         setVideoConstraints({ facingMode: "environment" });
       } else {
         alert("Back camera not available on this device.");
-      }
+      } 
     };
-
       
   const identifyImage = async (additionalPrompt = "") => {
     if (!image) return;
