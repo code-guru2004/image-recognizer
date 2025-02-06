@@ -12,7 +12,11 @@ function ImageRecognize() {
     const [result, setResult] = useState(null);
     const [loading, setLoading] = useState(false);
 
-    const [videoConstraints, setVideoConstraints] = useState({ facingMode: "user" }); // Start with front camera
+    const [videoConstraints, setVideoConstraints] = useState({
+      width: 1920,
+      height: 1080,
+      facingMode: "user", // Use "environment" for the back camera
+    }); // Start with front camera
     const [backCameraAvailable, setBackCameraAvailable] = useState(false);
   
     useEffect(() => {
@@ -113,8 +117,9 @@ function ImageRecognize() {
             <Webcam
             audio={false} // Set to true if you want to capture audio as well
             ref={webcamRef}
-            screenshotFormat="image/png" // You can change the format
+            screenshotFormat="image/jpeg" // You can change the format
             videoConstraints={videoConstraints}
+            screenshotQuality={1}
             />
             <button onClick={capture}>Capture Image</button>
             <button onClick={enableBackCamera} disabled={!backCameraAvailable}>
