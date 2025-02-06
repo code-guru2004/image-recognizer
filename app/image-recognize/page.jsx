@@ -11,9 +11,27 @@ function ImageRecognize() {
     const [image, setImage] = useState(null);
     const [result, setResult] = useState(null);
     const [loading, setLoading] = useState(false);
-    const [keywords, setKeywords] = useState([]);
-    const [relatedQuestions, setRelatedQuestions] = useState([]);
-
+    const [backCameraAvailable, setBackCameraAvailable] = useState(false);
+    useEffect(() => {
+        async function checkCameraAvailability() {
+          try {
+            const devices = await navigator.mediaDevices.enumerateDevices();
+            const isBackCam = devices.some(device => device.kind === 'videoinput' && device.label.includes('back'));
+            setBackCameraAvailable(isBackCam);
+          } catch (error) {
+            console.error("Error enumerating devices:", error);
+          }
+        }
+    
+        checkCameraAvailability();
+      }, []);
+      const enableBackCamera = () => {
+        if (backCameraAvailable) {
+          setVideoConstraints({ facingMode: "environment" });
+        } else {
+          alert("Back camera not available on this device.");
+        }
+      };
     const videoConstraints = {
         facingMode: "user" // or "environment" for back camera
     };
@@ -99,7 +117,9 @@ function ImageRecognize() {
             
             />
             <button onClick={capture}>Capture Image</button>
-            
+            <button onClick={enableBackCamera} disabled={!backCameraAvailable}>
+                Enable Back Camera
+            </button>
             {image && (
               <div className="mb-8 flex justify-center">
                 <Image
