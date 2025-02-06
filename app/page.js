@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Image from "next/image";
 import { GoogleGenerativeAI } from "@google/generative-ai";
+import Link from "next/link";
 
 export default function Home() {
   const [image, setImage] = useState(null);
@@ -143,28 +144,28 @@ export default function Home() {
             <nav>
               <ul className="flex space-x-4">
                 <li>
-                  <a
+                  <Link
                     href="#"
                     className="text-gray-600 hover:text-blue-600 transition duration-150 ease-in-out"
                   >
                     Home
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a
+                  <Link
                     href="#how-it-works"
                     className="text-gray-600 hover:text-blue-600 transition duration-150 ease-in-out"
                   >
-                    How It Works
-                  </a>
+                    Capture Image
+                  </Link>
                 </li>
                 <li>
-                  <a
+                  <Link
                     href="#features"
                     className="text-gray-600 hover:text-blue-600 transition duration-150 ease-in-out"
                   >
-                    Features
-                  </a>
+                    Recognizer
+                  </Link>
                 </li>
               </ul>
             </nav>
