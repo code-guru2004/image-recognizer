@@ -11,36 +11,38 @@ function ImageRecognize() {
     const [image, setImage] = useState(null);
     const [result, setResult] = useState(null);
     const [loading, setLoading] = useState(false);
+    const [videoConstraints, setVideoConstraints] = useState({ facingMode: "user" }); // Start with front camera
     const [backCameraAvailable, setBackCameraAvailable] = useState(false);
+  
     useEffect(() => {
-        async function checkCameraAvailability() {
-          try {
-            const devices = await navigator.mediaDevices.enumerateDevices();
-            const isBackCam = devices.some(device => device.kind === 'videoinput' && device.label.includes('back'));
-            setBackCameraAvailable(isBackCam);
-          } catch (error) {
-            console.error("Error enumerating devices:", error);
-          }
+      async function checkCameraAvailability() {
+        try {
+          const devices = await navigator.mediaDevices.enumerateDevices();
+          const isBackCam = devices.some(device => device.kind === 'videoinput' && device.label.includes('back'));
+          setBackCameraAvailable(isBackCam);
+        } catch (error) {
+          console.error("Error enumerating devices:", error);
         }
-    
-        checkCameraAvailability();
-      }, []);
-      const enableBackCamera = () => {
-        if (backCameraAvailable) {
-          setVideoConstraints({ facingMode: "environment" });
-        } else {
-          alert("Back camera not available on this device.");
-        }
-      };
-    const videoConstraints = {
-        facingMode: "user" // or "environment" for back camera
-    };
+      }
+  
+      checkCameraAvailability();
+    }, []);
+  
     const capture = useCallback(() => {
-        const imageSrc = webcamRef.current.getScreenshot();
-        setImage(imageSrc);
+      const imageSrc = webcamRef.current?.getScreenshot(); // Check if webcamRef.current exists
+      setImage(imageSrc);
     }, [webcamRef]);
+  
     const retake = () => {
         setImage(null);
+    };
+  
+    const enableBackCamera = () => {
+      if (backCameraAvailable) {
+        setVideoConstraints({ facingMode: "environment" });
+      } else {
+        alert("Back camera not available on this device.");
+      }
     };
 
       
