@@ -99,6 +99,9 @@ function ImageRecognize() {
             
             />
             <button onClick={capture}>Capture Image</button>
+            <button onClick={enableBackCamera} disabled={!backCameraAvailable}>
+                Enable Back Camera
+            </button>
             {image && (
               <div className="mb-8 flex justify-center">
                 <Image
