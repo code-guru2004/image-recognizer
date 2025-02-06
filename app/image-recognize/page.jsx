@@ -113,7 +113,7 @@ function ImageRecognize() {
             <Webcam
             audio={false} // Set to true if you want to capture audio as well
             ref={webcamRef}
-            screenshotFormat="image/jpeg" // You can change the format
+            screenshotFormat="image/png" // You can change the format
             videoConstraints={videoConstraints}
             mirrored={true}
             
