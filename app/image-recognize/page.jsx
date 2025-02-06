@@ -62,7 +62,7 @@ function ImageRecognize() {
     try {
       //const imageParts = await fileToGenerativePart(image);
       const result = await model.generateContent([
-        `Identify this image and provide its name and important information including a brief explanation about that image. Don't give any key points just give "information" withing 4-5 lines. ${additionalPrompt}`,
+        `Tell me about the given image: ${additionalPrompt}`,
         image,
       ]);
       const response = await result.response;
