@@ -38,9 +38,9 @@ export default function Capture() {
       setVideoConstraints({ facingMode: "environment" });
     } else {
       alert("Back camera not available on this device.");
-    }
+    } 
   };
-
+ 
   return (
     <div>
       <Webcam
