@@ -109,7 +109,7 @@ function ImageRecognize() {
 
   return (
     <div className='w-screen h-screen flex items-center justify-center flex-col'>
-        <div className='w-[30%]'>
+        <div className=''>
             <Webcam
             audio={false} // Set to true if you want to capture audio as well
             ref={webcamRef}
