@@ -31,11 +31,11 @@ function ImageRecognize() {
   
     const capture = useCallback(() => {
       const imageSrc = webcamRef.current?.getScreenshot(); // Check if webcamRef.current exists
-      setCapturedImage(imageSrc);
+      setImage(imageSrc);
     }, [webcamRef]);
   
     const retake = () => {
-      setCapturedImage(null);
+        setImage(null);
     };
   
     const enableBackCamera = () => {
@@ -115,8 +115,6 @@ function ImageRecognize() {
             ref={webcamRef}
             screenshotFormat="image/png" // You can change the format
             videoConstraints={videoConstraints}
-            
-            
             />
             <button onClick={capture}>Capture Image</button>
             <button onClick={enableBackCamera} disabled={!backCameraAvailable}>
